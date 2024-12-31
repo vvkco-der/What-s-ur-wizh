@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Wishes 🎉</title>
+    <link rel="stylesheet" href="styles.css">
+<style type="text/css" id="dcoder_stylesheet">/* General Page Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #1a1a2e, #16213e, #0f3460);
+    color: white;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    background-image: url('https://cdn.pixabay.com/photo/2018/03/16/16/06/panda-3237029_960_720.jpg');
+    background-size: cover;
+    background-position: center;
+    transition: background-image 1s ease-in-out;
+}
+
+/* Button Styling */
+button {
+    padding: 15px 40px;
+    font-size: 18px;
+    background-color: #FF6347;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #FF4500;
+    transform: scale(1.05);
+}
+
+/* Input Fields Styling */
+input[type="text"] {
+    padding: 12px;
+    font-size: 16px;
+    width: 70%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.7);
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Hide elements by default */
+.hidden {
+    display: none;
+}
+
+/* Transition for Pages */
+#regretsOrMemoriesPage, #wishPage2 {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+#regretsOrMemoriesPage.show, #wishPage2.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Buttons inside the selection box */
+.selection-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Celebration Animation */
+#celebrationAnimation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://cdn.pixabay.com/photo/2017/12/30/11/33/fireworks-3042629_960_720.gif');
+    background-size: cover;
+    opacity: 0;
+    z-index: 10;
+    pointer-events: none;
+    animation: fadeInOut 3s ease-in-out forwards;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Thank You Message */
+#thankYouMessage {
+    display: none;
+    padding: 40px;
+    font-size: 24px;
+    color: #FFD700;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    width: 70%;
+    margin: 50px auto;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    animation: fadeIn 2s ease-out;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Panda Background for regrets/memories page */
+#regretsOrMemoriesPage {
+    background-image: url('https://cdn.pixabay.com/photo/2018/03/16/16/06/panda-3237029_960_720.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 50px;
+    transition: background-image 1s ease-in-out;
+}
+
+/* Updated Styles for Text and Buttons */
+h1, h2, p {
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* Smooth transition between pages */
+#regretsOrMemoriesPage, #wishPage2, #thankYouMessage {
+    transition: all 1s ease;
+}</style></head>
+<body>
+
+    <!-- First Page: Name Entry -->
+    <div id="wishPage">
+        <h1>✨ Welcome to the New Year Wishes Portal ✨</h1>
+        <p>Enter your name to get started and share your beautiful wish for 2025 🎉</p>
+        <input type="text" id="userName" placeholder="Enter your name here...">
+        <button id="nextPageBtn">Next</button>
+    </div>
+
+    <!-- Second Page: Regrets or Memories Selection -->
+    <div id="regretsOrMemoriesPage" class="hidden">
+        <h2>Let's Reflect and Share 💬</h2>
+        <p>Would you like to share a regret or a beautiful memory from the past year? 🌸</p>
+        <div class="selection-buttons">
+            <button id="regretBtn">Regret 😔</button>
+            <button id="memoryBtn">Good Memory 🌟</button>
+        </div>
+    </div>
+
+    <!-- Third Page: Share Your Wish for 2025 -->
+    <div id="wishPage2" class="hidden">
+        <h2>What is your wish for the New Year 2025? ✨</h2>
+        <input type="text" id="userWish" placeholder="Enter your wish here...">
+        <button id="submitWishBtn">Submit Wish 💌</button>
+    </div>
+
+    <!-- Celebration Animation -->
+    <div id="celebrationAnimation" class="hidden"></div>
+
+    <!-- Thank You Message with Animation -->
+    <div id="thankYouMessage" class="hidden">
+        <h2>Thank You for Sharing Your Wish! 🌟</h2>
+        <p>Happy New Year! 🥳 May your dreams come true! 🎉</p>
+    </div>
+
+    <script src="script.js"></script>
+
+<script type="text/javascript" id="dcoder_script">// DOM Elements
+const nextPageBtn = document.getElementById('nextPageBtn');
+const userNameInput = document.getElementById('userName');
+const regretBtn = document.getElementById('regretBtn');
+const memoryBtn = document.getElementById('memoryBtn');
+const submitWishBtn = document.getElementById('submitWishBtn');
+const userWishInput = document.getElementById('userWish');
+const celebrationAnimation = document.getElementById('celebrationAnimation');
+const thankYouMessage = document.getElementById('thankYouMessage');
+const regretsOrMemoriesPage = document.getElementById('regretsOrMemoriesPage');
+const wishPage2 = document.getElementById('wishPage2');
+const wishPage = document.getElementById('wishPage');
+
+// Moving to the next page (Name Page to Regrets or Memories Page)
+nextPageBtn.addEventListener('click', () => {
+    const userName = userNameInput.value.trim();
+    if (userName) {
+        wishPage.style.display = 'none';
+        regretsOrMemoriesPage.style.display = 'block';
+        setTimeout(() => {
+            regretsOrMemoriesPage.classList.add('show');
+        }, 100);
+    } else {
+        alert('Please enter your name!');
+    }
+});
+
+// Choosing between regrets or memories
+regretBtn.addEventListener('click', () => {
+    regretsOrMemoriesPage.style.display = 'none';
+    wishPage2.style.display = 'block';
+    setTimeout(() => {
+        wishPage2.classList.add('show');
+    }, 100);
+    document.body.style.backgroundImage = "url('https://www.w3schools.com/w3images/celebration.jpg')";
+});
+
+memoryBtn.addEventListener('click', () => {
+    regretsOrMemoriesPage.style.display = 'none';
+    wishPage2.style.display = 'block';
+    setTimeout(() => {
+        wishPage2.classList.add('show');
+    }, 100);
+    document.body.style.backgroundImage = "url('https://www.w3schools.com/w3images/celebration.jpg')";
+});
+
+// Handling the wish submission and triggering celebration
+submitWishBtn.addEventListener('click', () => {
+    const userWish = userWishInput.value.trim();
+    if (userWish) {
+        wishPage2.style.display = 'none';
+        celebrationAnimation.style.display = 'block'; // Make the celebration animation visible
+        setTimeout(() => {
+            thankYouMessage.style.display = 'block';
+        }, 2500);
+    } else {
+        alert("Please enter a wish before submitting.");
+    }
+});</script></body></html>
